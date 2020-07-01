@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Antrian.iml" filepath="$PROJECT_DIR$/Antrian.iml" group="Antrian" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/antrian2.iml" filepath="$PROJECT_DIR$/.idea/antrian2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Antrian.iml" filepath="$PROJECT_DIR$/.idea/Antrian.iml" group="Antrian" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Antrian/app" />
     </modules>
   </component>
