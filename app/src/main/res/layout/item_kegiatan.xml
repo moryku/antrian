@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_kegiatan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:clipToPadding="true"
         android:clipChildren="true"
         app:cardCornerRadius="15dp"
@@ -29,6 +29,7 @@
             android:id="@+id/iv_kegiatan"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginBottom="-2dp"
             android:scaleType="fitStart"
             android:adjustViewBounds="true"
             android:background="@drawable/rounded"
@@ -39,6 +40,7 @@
             android:id="@+id/ll_kegiatan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="-1dp"
             android:layout_alignBottom="@id/iv_kegiatan"
             android:gravity="bottom"
             android:background="@drawable/gradient_transparent"
@@ -71,7 +73,9 @@
                 <TextView
                     android:id="@+id/tv_status_kegiatan"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/rl_dots"
+                    android:layout_alignBottom="@id/rl_dots"
                     android:layout_marginLeft="7dp"
                     android:layout_toEndOf="@id/rl_dots"
                     android:maxLines="2"
@@ -116,9 +120,8 @@
                 android:id="@+id/tv_kegiatan_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="Antrian Pembayaran SPP Bulan Juli 2020"
-                android:maxLines="3"
+                android:lines="2"
                 android:ellipsize="end"
                 android:gravity="bottom"
                 style="@style/BigTitle"/>
@@ -128,9 +131,9 @@
                 android:layout_height="wrap_content"
                 android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian. "
                 android:layout_marginTop="15dp"
-                android:maxLines="4"
+                android:lines="3"
                 android:ellipsize="end"
-                android:gravity="bottom"
+                android:gravity="top"
                 style="@style/BodyWhite"
                 android:alpha="0.9"/>
             <TextView

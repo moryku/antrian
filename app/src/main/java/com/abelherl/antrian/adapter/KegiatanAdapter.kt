@@ -54,26 +54,30 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             tv_title.text = item.title
             tv_desc.text = item.description
 
-            var minuteStart = item.start.minutes.toString()
-            var minuteEnd = item.end.minutes.toString()
-
-            if (item.start.minutes.toString().toCharArray().size == 1) { minuteStart = "0" + minuteStart }
-            if (item.end.minutes.toString().toCharArray().size == 1) { minuteEnd = "0" + minuteEnd }
+//            var minuteStart = item.start.minutes.toString()
+//            var minuteEnd = item.end.minutes.toString()
+//
+//            if (item.start.minutes.toString().toCharArray().size == 1) { minuteStart = "0" + minuteStart }
+//            if (item.end.minutes.toString().toCharArray().size == 1) { minuteEnd = "0" + minuteEnd }
 
             tv_estimation.text = "±" + item.estimation + " menit/orang"
-            tv_time.text = "Waktu pelayanan: \n" + item.start.hours.toString() + ":" + minuteStart +
-                    " - " + item.end.hours.toString() + ":" + minuteEnd
+            tv_time.text = "Waktu pelayanan: \n" + item.start +
+                    " - " + item.finish
 
             var noSekarang = 0
             var noTotal = 0
             var ikut = false
+
+            tv_nomor.visibility = View.GONE
+            tv_nomor.invalidate()
+            Log.d("TAG", "TIDAK ANTRI: " + tv_nomor.text)
 
             for (antri in list) {
                 if (antri.kegiatanId == item.id) {
                     noTotal += 1
 
                     when (antri.status) {
-                        2 -> noSekarang += 1
+                        "2" -> noSekarang += 1
                     }
 
                     if (!ikut) {
@@ -83,10 +87,6 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                             tv_nomor.invalidate()
                             Log.d("TAG", "MASUK ANTRI: " + tv_nomor.text)
                             ikut = true
-                        } else {
-                            tv_nomor.visibility = View.GONE
-                            tv_nomor.invalidate()
-                            Log.d("TAG", "TIDAK ANTRI: " + tv_nomor.text)
                         }
                     }
                 }
@@ -105,7 +105,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
 //                cv_kegiatan.backgroundTintList = ColorStateList.valueOf(context.resources.getColor(R.color.green))
 //            }
 
-            if (item.status == 0) {
+            if (item.status == "0") {
                 tv_status.text = "Antrian Ditutup"
                 v_dots.backgroundTintList = ColorStateList.valueOf(context.resources.getColor(R.color.lightRed))
             }
@@ -115,7 +115,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             }
 
             bt_kegiatan.setOnClickListener {
-                if (item.status == 0) {
+                if (item.status == "0") {
                     Toast.makeText(context, "Maaf, antrian sudah ditutup", Toast.LENGTH_LONG).show()
                 }
                 else {
