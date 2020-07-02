@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.appcompat:appcompat-resources:1.1.0@aar">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c9476eb9c2e2a41bae4eef03c453b52/jetified-appcompat-resources-1.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8c9476eb9c2e2a41bae4eef03c453b52/jetified-appcompat-resources-1.1.0/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc4508feab822616f230daadd2b0b895/jetified-appcompat-resources-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc4508feab822616f230daadd2b0b895/jetified-appcompat-resources-1.1.0/res" />
+>>>>>>> loginRegister
     </CLASSES>
     <JAVADOC />
     <SOURCES>
