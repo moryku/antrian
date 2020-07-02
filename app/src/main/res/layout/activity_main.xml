@@ -35,6 +35,14 @@
                 android:tint="@color/white"/>
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:id="@+id/tv_empty_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        style="@style/BodyWhite"
+        android:alpha="0.7"
+        android:text="Tidak ada kegiatan untuk saat ini"/>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/sv_main"
         android:layout_width="match_parent"
@@ -42,9 +50,9 @@
         android:overScrollMode="always"
         android:layout_centerHorizontal="true"
         android:paddingTop="10dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="30dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="20dp"
         android:layout_marginBottom="-10dp"
         android:layout_below="@id/rl_dashboard"
         android:clipChildren="false"
@@ -55,215 +63,30 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginStart="-30dp"
-                android:layout_marginEnd="-30dp"
+                android:layout_height="35dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
                 <me.grantland.widget.AutofitTextView
-                    android:id="@+id/tv_greetings_dashboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/bt_sync"
                     android:maxLines="2"
                     app:minTextSize="20dp"
-                    style="@style/BigLabelWhite"
-                    android:text="Selamat pagi, user"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginEnd="10dp"/>
+                    style="@style/Title"
+                    android:text="Kegiatan" />
                 <ImageButton
                     android:id="@+id/bt_sync"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_alignTop="@id/tv_greetings_dashboard"
-                    android:layout_alignBottom="@id/tv_greetings_dashboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:background="@color/transparent"
                     android:src="@drawable/ic_history_black_24dp"
                     android:tint="@color/white"/>
             </RelativeLayout>
-
-            <androidx.cardview.widget.CardView
+            <com.chauthai.overscroll.RecyclerViewBouncy
+                android:id="@+id/rv_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="true"
-                android:clipChildren="true"
-                app:cardCornerRadius="15dp"
-                android:elevation="10dp"
-                app:cardElevation="10dp"
-                android:background="@color/green"
-                android:gravity="bottom">
-                <Button
-                    android:id="@+id/bt_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:background="?selectableItemBackground"
-                    android:translationZ="10dp"
-                    style="@style/Widget.AppCompat.Button.Borderless" />
-                <ImageView
-                    android:id="@+id/iv_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/lightBlue"
-                    android:src="@drawable/bg_kegiatan"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignBottom="@id/iv_kegiatan"
-                    android:gravity="bottom"
-                    android:background="@drawable/gradient_transparent"
-                    android:backgroundTint="@color/purple"
-                    android:padding="20dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-                        <RelativeLayout
-                            android:id="@+id/rl_dots"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/stroke"
-                            android:layout_centerVertical="true"
-                            android:clipToPadding="false"
-                            android:clipChildren="false">
-                            <View
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:layout_centerInParent="true"
-                                android:background="@drawable/rounded"
-                                android:backgroundTint="@color/lightGreen"/>
-                        </RelativeLayout>
-                        <TextView
-                            android:id="@+id/tv_status_kegiatan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="7dp"
-                            android:layout_toEndOf="@id/rl_dots"
-                            style="@style/SmallLabelHint"
-                            android:text="Antrian dibuka"
-                            android:layout_centerInParent="true"
-                            android:textStyle="bold"/>
-                        <LinearLayout
-                            android:id="@+id/rl_antrian_kegiatan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical"
-                            android:padding="10dp"
-                            android:clipToPadding="false"
-                            android:clipChildren="false"
-                            android:foregroundGravity="center"
-                            android:layout_gravity="end"
-                            android:background="@drawable/rounded"
-                            android:backgroundTint="@color/hintBlack">
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:background="@drawable/rounded"
-                                android:backgroundTint="@color/hint"/>
-                            <me.grantland.widget.AutofitTextView
-                                android:id="@+id/tv_nomor_kegiatan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Nomor Antrian: 7"
-                                style="@style/SmallLabelWhite"
-                                android:textStyle="bold"/>
-                        </LinearLayout>
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/tv_kegiatan_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="Antrian Pembayaran SPP Bulan Juli 2020"
-                        android:lines="2"
-                        android:ellipsize="end"
-                        android:gravity="bottom"
-                        style="@style/BigTitle"/>
-                    <TextView
-                        android:id="@+id/tv_kegiatan_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian."
-                        android:layout_marginTop="15dp"
-                        android:maxLines="4"
-                        android:ellipsize="end"
-                        android:gravity="bottom"
-                        style="@style/BodyWhite"
-                        android:alpha="0.9"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="-10dp">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-                            <ImageView
-                                android:id="@+id/iv_time_kegiatan"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_access_time_black_24dp"
-                                android:tint="@color/white"/>
-                            <TextView
-                                android:id="@+id/tv_time_kegiatan"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="08:00 - 15:00"
-                                android:layout_toEndOf="@+id/iv_time_kegiatan"
-                                android:layout_marginStart="10dp"
-                                android:maxLines="2"
-                                android:ellipsize="end"
-                                android:textStyle="bold"
-                                android:gravity="center_vertical"
-                                style="@style/SmallLabelHint"
-                                android:alpha="1"/>
-                        </RelativeLayout>
-                        <Space
-                            android:layout_width="10dp"
-                            android:layout_height="match_parent"/>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-                            <ImageView
-                                android:id="@+id/iv_participant_kegiatan"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/ic_people_black_24dp"
-                                android:tint="@color/white"/>
-                            <TextView
-                                android:id="@+id/tv_kegiatan_participant"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="Nomor 3 dari 12 orang"
-                                android:layout_toEndOf="@+id/iv_participant_kegiatan"
-                                android:layout_marginStart="10dp"
-                                android:maxLines="2"
-                                android:ellipsize="end"
-                                android:textStyle="bold"
-                                android:gravity="center_vertical"
-                                style="@style/SmallLabelHint"
-                                android:alpha="1"/>
-                        </RelativeLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:paddingBottom="15dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
