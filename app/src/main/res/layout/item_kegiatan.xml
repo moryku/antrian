@@ -4,8 +4,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="20dp"
-    android:paddingRight="15dp"
-    android:paddingLeft="15dp"
     android:background="@color/transparent">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,7 +13,7 @@
         app:cardCornerRadius="15dp"
         android:elevation="10dp"
         app:cardElevation="10dp"
-        android:background="@color/green"
+        app:cardBackgroundColor="@color/lightBlue"
         android:gravity="bottom">
         <Button
             android:id="@+id/bt_kegiatan"
@@ -25,17 +23,20 @@
             android:background="?selectableItemBackground"
             android:translationZ="10dp"
             style="@style/Widget.AppCompat.Button.Borderless" />
+
         <ImageView
             android:id="@+id/iv_kegiatan"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
             android:background="@drawable/rounded"
             android:backgroundTint="@color/lightBlue"
-            android:src="@drawable/bg_kegiatan"/>
+            android:src="@drawable/bg_kegiatan_2" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@id/iv_kegiatan"
             android:gravity="bottom"
             android:background="@drawable/gradient_transparent"
@@ -46,7 +47,7 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:clipChildren="false"
                 android:clipToPadding="false">
                 <RelativeLayout
@@ -57,22 +58,24 @@
                     android:layout_centerVertical="true"
                     android:clipToPadding="false"
                     android:clipChildren="false">
-                    <View
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/v_dots"
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/rounded"
+                        app:cardCornerRadius="5dp"
                         android:backgroundTint="@color/lightGreen"/>
                 </RelativeLayout>
                 <TextView
                     android:id="@+id/tv_status_kegiatan"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="7dp"
                     android:layout_toEndOf="@id/rl_dots"
+                    android:maxLines="2"
                     style="@style/SmallLabelHint"
                     android:text="Antrian dibuka"
+                    android:gravity="center_vertical"
                     android:layout_centerInParent="true"
                     android:textStyle="bold"/>
                 <LinearLayout
@@ -80,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:orientation="vertical"
                     android:clipToPadding="false"
                     android:clipChildren="false"
@@ -111,9 +114,9 @@
                 android:id="@+id/tv_kegiatan_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Antrian Pembayaran SPP Bulan Juli 2020"
-                android:lines="2"
+                android:maxLines="3"
                 android:ellipsize="end"
                 android:gravity="bottom"
                 style="@style/BigTitle"/>
@@ -121,7 +124,7 @@
                 android:id="@+id/tv_kegiatan_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian."
+                android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian. "
                 android:layout_marginTop="15dp"
                 android:maxLines="4"
                 android:ellipsize="end"

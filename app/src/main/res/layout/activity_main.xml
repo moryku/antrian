@@ -82,10 +82,10 @@
                     android:src="@drawable/ic_history_black_24dp"
                     android:tint="@color/white"/>
             </RelativeLayout>
-            <com.chauthai.overscroll.RecyclerViewBouncy
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingBottom="15dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
