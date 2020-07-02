@@ -46,7 +46,7 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:clipChildren="false"
                 android:clipToPadding="false">
                 <RelativeLayout
@@ -58,6 +58,7 @@
                     android:clipToPadding="false"
                     android:clipChildren="false">
                     <View
+                        android:id="@+id/v_dots"
                         android:layout_width="10dp"
                         android:layout_height="10dp"
                         android:layout_centerInParent="true"
@@ -81,9 +82,9 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
-                    android:padding="10dp"
                     android:clipToPadding="false"
                     android:clipChildren="false"
+                    android:layout_centerVertical="true"
                     android:foregroundGravity="center"
                     android:layout_gravity="end"
                     android:background="@drawable/rounded"
@@ -97,6 +98,10 @@
                         android:id="@+id/tv_nomor_kegiatan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:text="Nomor Antrian: 7"
                         style="@style/SmallLabelWhite"
                         android:textStyle="bold"/>
