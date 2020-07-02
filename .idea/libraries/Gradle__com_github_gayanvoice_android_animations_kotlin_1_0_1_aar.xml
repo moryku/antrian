@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.gayanvoice:android-animations-kotlin:1.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2d4dc8aaaab06602d51ac27078f31df6/jetified-android-animations-kotlin-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2d4dc8aaaab06602d51ac27078f31df6/jetified-android-animations-kotlin-1.0.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.gayanvoice/android-animations-kotlin/1.0.1/97e14cf8839ebaf99bc3d84dc5f37ac08fceb60c/android-animations-kotlin-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
