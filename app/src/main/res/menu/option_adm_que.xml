@@ -4,12 +4,17 @@
 
     <item
         android:id="@+id/all_adm_que"
-        android:title="All_adm_que"
+        android:title="All"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/complete_adm_que"
         android:title="Completed"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/cancel_adm_que"
+        android:title="Cancel"
         app:showAsAction="never"/>
 
     <item
