@@ -8,16 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.abelherl.antrian.MainActivity
 import com.abelherl.antrian.R
 import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
 import com.abelherl.antrian.data.UserItem
+import com.abelherl.antrian.goTo
 import id.voela.actrans.AcTrans
 import kotlinx.android.extensions.LayoutContainer
 import java.util.*
@@ -50,6 +49,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             val tv_nomor = containerView.findViewById<TextView>(R.id.tv_nomor_kegiatan)
             val cv_kegiatan = containerView.findViewById<CardView>(R.id.cv_kegiatan)
             val ll_kegiatan = containerView.findViewById<LinearLayout>(R.id.ll_kegiatan)
+            val bt_kegiatan = containerView.findViewById<Button>(R.id.bt_kegiatan)
 
             tv_title.text = item.title
             tv_desc.text = item.description
@@ -112,6 +112,15 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             else {
                 tv_status.text = "Antrian Dibuka"
                 v_dots.backgroundTintList = ColorStateList.valueOf(context.resources.getColor(R.color.lightGreen))
+            }
+
+            bt_kegiatan.setOnClickListener {
+                if (item.status == 0) {
+                    Toast.makeText(context, "Maaf, antrian sudah ditutup", Toast.LENGTH_LONG).show()
+                }
+                else {
+                    goTo(context, MainActivity(), false, null)
+                }
             }
         }
     }
