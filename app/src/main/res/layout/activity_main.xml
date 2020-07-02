@@ -86,7 +86,8 @@
                 android:id="@+id/rv_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="15dp"/>
+                android:paddingBottom="15dp"
+                android:nestedScrollingEnabled="false"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

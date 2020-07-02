@@ -28,14 +28,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun simulateData() {
         listKegiatan.add(KegiatanItem(0, "Pembayaran SPP di Pondok Pesantren Al-Hikmah", "Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian.", Date(), 5, Date(), Date(), 1))
-        listKegiatan.add(KegiatanItem(1, "Pengambilan Ijazah dengan Aturan Mencegah COVID-19", "Kegiatan antrian pengambilan raport untuk semua murid di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian.", Date(), 3, Date(), Date(), 1))
-        listAntrian.add(AntrianItem(0, "nomi430", 0, "09:00", 1))
-        listAntrian.add(AntrianItem(1, "nomi40", 0, "09:00", 2))
-        listAntrian.add(AntrianItem(2, "nomi40", 0, "09:00", 2))
+        listKegiatan.add(KegiatanItem(1, "Pengambilan Ijazah dengan Aturan Mencegah COVID-19", "Kegiatan antrian pengambilan raport untuk semua murid di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian.", Date(), 3, Date(), Date(), 0))
+        listAntrian.add(AntrianItem(0, "nomi40", 0, "09:00", 2))
+        listAntrian.add(AntrianItem(1, "nomi40", 0, "09:00", 1))
+        listAntrian.add(AntrianItem(2, "nomi430", 0, "09:00", 1))
         listAntrian.add(AntrianItem(3, "nomi30", 0, "09:00", 1))
-        listAntrian.add(AntrianItem(3, "nomi30", 1, "09:00", 2))
-        Log.d("TAG", "Size: " + listKegiatan.size)
-        Log.d("TAG", "Size: " + listAntrian.size)
+        listAntrian.add(AntrianItem(4, "nomi30", 1, "09:00", 2))
+
+        Log.d("TAG", "Size: " + listKegiatan)
+        Log.d("TAG", "Size: " + listAntrian)
     }
 
     private fun initView() {
@@ -44,13 +45,14 @@ class MainActivity : AppCompatActivity() {
 
         val lp: ViewGroup.LayoutParams = rv_main.getLayoutParams()
 
-        val height2: Int = listKegiatan.size * 300
+        val height2: Int = listKegiatan.size * 350
 
         lp.height = convertDiptoPix(height2)
         rv_main.setLayoutParams(lp)
-
         rv_main.layoutManager = layoutManager
         rv_main.adapter = KegiatanAdapter(this, listKegiatan, listAntrian, user)
+
+        rv_main.invalidate()
 
         if (listKegiatan.size != 0) {
             tv_empty_main.visibility = View.GONE

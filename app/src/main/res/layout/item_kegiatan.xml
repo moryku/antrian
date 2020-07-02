@@ -6,6 +6,7 @@
     android:paddingTop="20dp"
     android:background="@color/transparent">
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_kegiatan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="true"
@@ -28,13 +29,14 @@
             android:id="@+id/iv_kegiatan"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitStart"
             android:adjustViewBounds="true"
             android:background="@drawable/rounded"
-            android:backgroundTint="@color/lightBlue"
+            android:backgroundTint="@color/transparent"
             android:src="@drawable/bg_kegiatan_2" />
 
         <LinearLayout
+            android:id="@+id/ll_kegiatan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/iv_kegiatan"
@@ -131,11 +133,22 @@
                 android:gravity="bottom"
                 style="@style/BodyWhite"
                 android:alpha="0.9"/>
+            <TextView
+                android:id="@+id/tv_kegiatan_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waktu Pelayanan\n08:00 - 15:00"
+                android:layout_marginTop="15dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                style="@style/SmallLabelWhite"
+                android:alpha="0.9"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="-10dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -149,7 +162,7 @@
                         android:src="@drawable/ic_access_time_black_24dp"
                         android:tint="@color/white"/>
                     <TextView
-                        android:id="@+id/tv_time_kegiatan"
+                        android:id="@+id/tv_estimation_kegiatan"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="08:00 - 15:00"
