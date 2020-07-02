@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminManageQueue">
+    tools:context=".AdminCreateQue">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/bar_mng_que"
+        android:id="@+id/bar_crt_req"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:titleTextColor="@color/white"
-        app:title="Manage Queue"
+        app:title="Create Request"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_mng_que"
+        android:id="@+id/rv_crt_req"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bar_mng_que"
+        app:layout_constraintTop_toBottomOf="@id/bar_crt_req"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

@@ -25,5 +25,9 @@ class AdminAdminHome : AppCompatActivity() {
             startActivity(Intent(this, AdminManageRequest::class.java))
         }
 
+        btn_crt_que.setOnClickListener {
+            startActivity(Intent(this, AdminCreateQue::class.java))
+        }
+
     }
 }

@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/all_adm_act"
-        android:title="All"
+        android:id="@+id/all_adm_que"
+        android:title="All_adm_que"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/open_adm_act"
-        android:title="Open"
+        android:id="@+id/complete_adm_que"
+        android:title="Completed"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/close_adm_act"
-        android:title="Closed"
+        android:id="@+id/wait_adm_que"
+        android:title="Waiting"
         app:showAsAction="never"/>
 </menu>
