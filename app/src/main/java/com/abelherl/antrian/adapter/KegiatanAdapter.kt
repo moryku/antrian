@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.abelherl.antrian.DetailKegiatanActivity
 import com.abelherl.antrian.MainActivity
 import com.abelherl.antrian.R
 import com.abelherl.antrian.data.AntrianItem
@@ -119,7 +121,16 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                     Toast.makeText(context, "Maaf, antrian sudah ditutup", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    goTo(context, MainActivity(), false, null)
+                    val intent = Intent(context, DetailKegiatanActivity::class.java)
+
+                    intent.putExtra("id", item.id)
+                    intent.putExtra("title", item.title)
+                    intent.putExtra("description", item.description)
+                    intent.putExtra("estimation", tv_estimation.text.toString())
+                    intent.putExtra("time", tv_time.text.toString())
+                    intent.putExtra("participant", tv_participant.text.toString())
+
+                    goTo(context, intent, false)
                 }
             }
         }

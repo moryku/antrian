@@ -2,6 +2,7 @@ package com.abelherl.antrian
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.abelherl.antrian.data.KegiatanItem
@@ -12,9 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.voela.actrans.AcTrans
 
-fun goTo(context: Context, activity: AppCompatActivity, finish: Boolean, withExtra: Int? = 99) {
-    val intent = Intent(context, activity::class.java)
-    if (withExtra != 99) { intent.putExtra("id", withExtra); }
+fun goTo(context: Context, intent: Intent, finish: Boolean) {
     if (finish) { intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) }
     context.startActivity(intent)
     AcTrans.Builder(context).performFade()
