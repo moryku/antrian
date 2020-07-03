@@ -9,7 +9,19 @@
     tools:context=".ManageProfil">
 
     <TextView
-        android:layout_marginTop="10dp"
+        android:id="@+id/tmpEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:textColor="#ED2121"
+        android:textSize="25sp">
+    </TextView>
+
+
+    <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nama Wali"
@@ -52,6 +64,7 @@
         android:id="@+id/txtNoHp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:textSize="15sp">
     </EditText>
     <TextView
