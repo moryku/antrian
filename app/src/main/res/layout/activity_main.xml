@@ -7,23 +7,120 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnLogout"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:layout_centerInParent="true"/>
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
 
-        <Button
-            android:id="@+id/btnManage"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Wali : "
+                android:textSize="20sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/tampilNW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profil"/>
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Santri : "
+                android:textSize="20sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/tampilNS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Hp : "
+                android:textSize="20sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/tampilNoHp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat : "
+                android:textSize="20sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/tampilAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:id="@+id/btnManage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profil"/>
+        </LinearLayout>
     </LinearLayout>
+
 
 </RelativeLayout>

@@ -54,7 +54,6 @@ class ManageProfil : AppCompatActivity() {
             Toast.makeText(this@ManageProfil,"Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
         } else {
 
-           // val profile = ProfilModel("", "", getNamaWali, getNamaSantri, getNoHp, getAlamat)
 
             ref.child("namaWali").setValue(getNamaWali)
             ref.child("namaSantri").setValue(getNamaSantri)
@@ -70,10 +69,6 @@ class ManageProfil : AppCompatActivity() {
 
         }
     }
-//    override fun onStart(){
-//        super.onStart()
-//        getData()
-//    }
     private fun getData(){
        // val getUserID2: String = auth?.getCurrentUser()?.getUid().toString()
 
@@ -84,29 +79,15 @@ class ManageProfil : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-//                val getNamaWali = dataSnapshot.child("namaWali").getValue()
-//                val getNamaSantri = dataSnapshot.child("namaSantri").getValue()
-//                val getNoHp = dataSnapshot.child("noHp").getValue()
-//                val getAlamat = dataSnapshot.child("alamat").getValue()
-//
-//                NamaWali?.text = getNamaWali as Editable?
-//                NamaSantri?.text = getNamaSantri as Editable?
-//                NoHp?.text = getNoHp as Editable?
-//                Alamat?.text = getAlamat as Editable?
-//
+                val getNamaWali = dataSnapshot.child("namaWali").getValue().toString()
+                val getNamaSantri = dataSnapshot.child("namaSantri").getValue().toString()
+                val getNoHp = dataSnapshot.child("noHp").getValue().toString()
+                val getAlamat = dataSnapshot.child("alamat").getValue().toString()
 
-
-               // val getProfile = dataSnapshot.getValue(ProfilModel::class.java)
-
-//                val getNamaWali: String = getProfile!!.namaWali
-//                val getNamaSantri: String = getProfile.namaSantri
-//                val getNoHp: String = getProfile.noHp
-//                val getAlamat: String = getProfile.alamat
-//
-//                NamaWali?.setText(getNamaWali)
-//                NamaSantri?.setText(getNamaSantri)
-//                NoHp?.setText(getNoHp)
-//                Alamat?.setText(getAlamat)
+                NamaWali?.setText(getNamaWali)
+                NamaSantri?.setText(getNamaSantri)
+                NoHp?.setText(getNoHp)
+                Alamat?.setText(getAlamat)
             }
 
         })
