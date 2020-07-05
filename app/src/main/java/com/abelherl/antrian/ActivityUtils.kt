@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,7 +19,14 @@ fun goTo(context: Context, intent: Intent, finish: Boolean) {
     context.startActivity(intent)
     AcTrans.Builder(context).performFade()
 }
+fun updateAntrian(antrianItem: AntrianItem, uploadToFirebase: Boolean) {
+    val ref = FirebaseDatabase.getInstance().reference
+    val auth = FirebaseAuth.getInstance()
 
+    if (uploadToFirebase) {
+        ref.child("Queue").child(antrianItem.id).push().setValue(antrianItem)
+    }
+}
 fun getKegiatan() : ArrayList<KegiatanItem>{
     val ref = FirebaseDatabase.getInstance().reference
     val auth = FirebaseAuth.getInstance()

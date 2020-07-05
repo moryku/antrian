@@ -180,4 +180,43 @@
         android:text="IKUT ANTRIAN"
         android:textColor="@color/white"
         android:textStyle="bold"/>
+    <RelativeLayout
+        android:id="@+id/rl_antrian_detail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:background="@color/purple">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_small"
+            android:alpha="0.5"/>
+        <TextView
+            android:id="@+id/tv_status_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/bt_batal_detail"
+            android:paddingLeft="15dp"
+            android:gravity="center"
+            android:translationZ="10dp"
+            android:text="Menunggu konfirmasi admin..."
+            style="@style/SmallLabelWhite"/>
+        <ImageButton
+            android:id="@+id/bt_batal_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/ic_close_black_24dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@color/lightRed"
+            android:elevation="10dp"/>
+    </RelativeLayout>
 </RelativeLayout>

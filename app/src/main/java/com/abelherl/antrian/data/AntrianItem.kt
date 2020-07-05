@@ -1,9 +1,9 @@
 package com.abelherl.antrian.data
 
 data class AntrianItem (
-    val id: String,
-    val userId: String,
-    val kegiatanId: String,
-    val beginAt: String,
-    val status: String
+    var id: String = "0",
+    val uid: String = "0",
+    val activity_id: String = "0",
+    val time: String = "0",
+    var status: String = "0"
 )

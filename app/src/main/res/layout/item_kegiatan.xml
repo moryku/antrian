@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_kegiatan"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="240dp"
         android:clipToPadding="true"
         android:clipChildren="true"
         app:cardCornerRadius="15dp"
@@ -128,7 +128,7 @@
             <TextView
                 android:id="@+id/tv_kegiatan_desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian. "
                 android:layout_marginTop="15dp"
                 android:lines="3"

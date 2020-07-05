@@ -1,5 +1,6 @@
 package com.abelherl.antrian
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,12 +16,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_detail_kegiatan.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_kegiatan.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    var listAntrian = arrayListOf<AntrianItem>()
     var user = UserItem("nomi430", "Arifudin", "ajod@gmail.com")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +47,12 @@ class MainActivity : AppCompatActivity() {
     private fun setData() {
         val ref = FirebaseDatabase.getInstance().reference
         var item: KegiatanItem
+        var antri: AntrianItem
+        val test by lazy { this.getSharedPreferences("test", Context.MODE_PRIVATE) }
+        val edit = test.edit()
+
+        edit.putInt("index", 0)
+        edit.apply()
 
         ref.child("Activity").addValueEventListener(object :
             ValueEventListener {
@@ -54,36 +62,63 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                //Inisialisasi ArrayList
-                var listKegiatan = arrayListOf<KegiatanItem>()
-                if (dataSnapshot.hasChildren()) {
-                    for (snapshot in dataSnapshot.children) {
-                        //Mapping data pada DataSnapshot ke dalam objek mahasiswa
-                        item = snapshot.getValue(KegiatanItem::class.java)!!
-                        item.id = snapshot.key!!
-                        listKegiatan.add(item)
+                ref.child("Queue").addValueEventListener(object :
+                    ValueEventListener {
 
-                        Log.d("TAG", "signInWithCredential:util" + " " + item)
+                    override fun onCancelled(p0: DatabaseError) {
+
                     }
-                }
 
-                Log.d("TAG", "Kegiatan: " + listKegiatan)
-//        listKegiatan = ArrayList(listKegiatan.sortedBy { it.start })
+                    override fun onDataChange(dataSnapshot2: DataSnapshot) {
+                        var listAntrian = arrayListOf<ArrayList<AntrianItem>>()
+                        if (dataSnapshot2.hasChildren()) {
+                            for (snapshot2 in dataSnapshot2.children) {
+                                if (snapshot2.hasChildren()) {
+                                    var list = arrayListOf<AntrianItem>()
 
-                val layoutManager = LinearLayoutManager(this@MainActivity)
-                val lp: ViewGroup.LayoutParams = rv_main.getLayoutParams()
-                val height2: Int = listKegiatan.size * 330
+                                    for (child in snapshot2.children) {
+                                        if (child.key != "status") {
+                                            Log.d("TAG", "childo: " + child.key)
+                                            antri = child.getValue(AntrianItem::class.java)!!
+                                            antri.id = child.key!!
+                                            list.add(antri)
+                                        }
+                                    }
+                                    listAntrian.add(list)
+                                }
+                            }
+                        }
 
-                lp.height = convertDiptoPix(height2)
+                        var listKegiatan = arrayListOf<KegiatanItem>()
+                        if (dataSnapshot.hasChildren()) {
+                            for (snapshot in dataSnapshot.children) {
+                                //Mapping data pada DataSnapshot ke dalam objek mahasiswa
+                                item = snapshot.getValue(KegiatanItem::class.java)!!
+                                item.id = snapshot.key!!
+                                listKegiatan.add(item)
 
-                rv_main.setLayoutParams(lp)
-                rv_main.layoutManager = layoutManager
-                rv_main.adapter = KegiatanAdapter(this@MainActivity, listKegiatan, listAntrian, user)
-                rv_main.invalidate()
+                                Log.d("TAG", "signInWithCredential:util" + " " + item)
+                            }
+                        }
 
-                if (listKegiatan.size != 0) {
-                    tv_empty_main.visibility = View.GONE
-                }
+                        Log.d("TAG", "Kegiatan: " + listKegiatan)
+
+                        val layoutManager = LinearLayoutManager(this@MainActivity)
+                        val lp: ViewGroup.LayoutParams = rv_main.getLayoutParams()
+                        val height2: Int = listKegiatan.size * 270
+
+                        lp.height = convertDiptoPix(height2)
+
+                        rv_main.setLayoutParams(lp)
+                        rv_main.layoutManager = layoutManager
+                        rv_main.adapter = KegiatanAdapter(this@MainActivity, listKegiatan, test, listAntrian, user)
+                        rv_main.invalidate()
+
+                        if (listKegiatan.size != 0) {
+                            tv_empty_main.visibility = View.GONE
+                        }
+                    }
+                })
             }
         })
     }

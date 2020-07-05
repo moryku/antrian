@@ -1,8 +1,5 @@
 package com.abelherl.antrian.data
 
-import java.util.*
-import javax.xml.transform.Source
-
 data class KegiatanItem(
     var id: String = "0",
     val name: String = "0",
