@@ -18,11 +18,11 @@ class AdminAdminHome : AppCompatActivity() {
         }
 
         btn_mng_que.setOnClickListener {
-            startActivity(Intent(this, AdminManageQueue::class.java))
+            startActivity(Intent(this, AdminViewQue::class.java))
         }
 
         btn_mng_req.setOnClickListener {
-            startActivity(Intent(this, AdminManageRequest::class.java))
+            startActivity(Intent(this, AdminViewAct::class.java))
         }
 
         btn_crt_que.setOnClickListener {

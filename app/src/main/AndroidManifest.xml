@@ -9,13 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminCreateQue"></activity>
-        <activity android:name=".AdminUpdateAct" />
-        <activity android:name=".AdminCreateQueue" />
-        <activity android:name=".AdminCreateAct" />
-        <activity android:name=".AdminManageQueue" />
-        <activity android:name=".AdminManageRequest" />
-        <activity android:name=".AdminManageActivity" />
+        <activity android:name=".AdminViewAct"
+            android:parentActivityName=".AdminAdminHome"/>
+        <activity android:name=".AdminViewQue"
+            android:parentActivityName=".AdminAdminHome"/>
+        <activity android:name=".AdminCreateQue"
+            android:parentActivityName=".AdminAdminHome"/>
+        <activity android:name=".AdminUpdateAct"
+            android:parentActivityName=".AdminManageActivity"/>
+        <activity android:name=".AdminCreateAct"
+            android:parentActivityName=".AdminManageActivity"/>
+        <activity android:name=".AdminManageQueue"
+            android:parentActivityName=".AdminViewQue"/>
+        <activity android:name=".AdminManageRequest"
+            android:parentActivityName=".AdminViewAct"/>
+        <activity android:name=".AdminManageActivity"
+            android:parentActivityName=".AdminAdminHome"/>
         <activity android:name=".AdminAdminHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

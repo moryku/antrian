@@ -45,6 +45,7 @@ class AdminUpdateAct : AppCompatActivity() {
             val getStart = tv_upt_act_start.text.toString()
             val getFinish = tv_upt_act_finish.text.toString()
             updateAct(getName, getTitle, getDesc, getStart, getFinish)
+            util.toast("Update success")
         }
 
     }

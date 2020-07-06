@@ -67,7 +67,7 @@ class AdminCreateAct : AppCompatActivity() {
         val formatter = SimpleDateFormat("dd/MM/yyyy")
         val date = formatter.format(Date())
         //input status
-        val status = '0'
+        val status = '1'
         //input parameter method ke dataclass "Activity" sesuai parameter
         val activity = Activity(name, date.toString(), title, desc, status.toString(), start, finish)
 

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminCreateQue"
+    tools:context=".AdminViewQue"
     android:background="@color/colorPrimary">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appCreQue"
+        android:id="@+id/appViewQue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,9 +16,9 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/bar_crt_req"
+            android:id="@+id/bar_view_req"
             app:titleTextColor="@color/white"
-            app:title="Create Request"
+            app:title="View Request"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"/>
@@ -26,10 +26,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_crt_req"
+        android:id="@+id/rv_view_req"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="5dp"
-        android:layout_below="@id/appCreQue"/>
+        android:layout_below="@id/appViewQue"/>
 
 </RelativeLayout>

@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminManageRequest">
+    tools:context=".AdminManageRequest"
+    android:background="@color/colorPrimary">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/bar_mng_req"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:titleTextColor="@color/white"
-        app:title="Manage Request"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"/>
+   <com.google.android.material.appbar.AppBarLayout
+       android:id="@+id/appManReq"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <androidx.appcompat.widget.Toolbar
+           android:id="@+id/bar_mng_req"
+           app:titleTextColor="@color/white"
+           app:title="Manage Request"
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           android:background="@color/colorPrimary"/>
+
+   </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_mng_req"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bar_mng_req"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/appManReq"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

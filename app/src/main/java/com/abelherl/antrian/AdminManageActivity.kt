@@ -1,14 +1,12 @@
 package com.abelherl.antrian
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abelherl.antrian.dataclass.Activity
@@ -19,7 +17,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import kotlinx.android.synthetic.main.activity_admin_manage_act.*
-import kotlinx.android.synthetic.main.list_act.view.*
+import kotlinx.android.synthetic.main.list_adm_req_rev.view.*
 
 class AdminManageActivity : AppCompatActivity() {
 
@@ -49,7 +47,7 @@ class AdminManageActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        query = actRef.orderByChild("status").equalTo("0")
+        query = actRef.orderByChild("status").equalTo("1")
         setList()
         adapter.startListening()
     }
@@ -91,7 +89,7 @@ class AdminManageActivity : AppCompatActivity() {
             .build()
         adapter = object : FirebaseRecyclerAdapter<Activity, ListHolder>(option){
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
-                val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_act, parent, false)
+                val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_adm_req_rev, parent, false)
                 return ListHolder(view)
             }
 
@@ -147,9 +145,21 @@ class AdminManageActivity : AppCompatActivity() {
     class ListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(activity: Activity) {
-            itemView.tv_ls_act_title.text = activity.title
-            itemView.tv_ls_act_name.text = activity.name
-            itemView.tv_ls_act_desc.text = activity.description
+            val time = "${activity.start} - ${activity.finish}"
+            val estimasi: String
+
+             if (activity.status == "1"){
+                estimasi = "Activity Open"
+            }else{
+                estimasi = "Activity Closed"
+            }
+
+            itemView.tv_ls_rev_title.text = activity.title
+            itemView.tv_ls_rev_que_no.visibility = View.GONE
+            itemView.tv_ls_rev_status.text = estimasi
+            itemView.tv_ls_rev_time.text = "${activity.created_date} @ $time"
+            itemView.tv_ls_rev_date.maxLines = 2
+            itemView.tv_ls_rev_date.text = activity.description
         }
 
     }

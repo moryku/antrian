@@ -1,30 +1,25 @@
 package com.abelherl.antrian
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abelherl.antrian.dataclass.Activity
-import com.abelherl.antrian.dataclass.Queue
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
-import kotlinx.android.synthetic.main.activity_admin_create_que.*
+import kotlinx.android.synthetic.main.activity_admin_view_act.*
 import kotlinx.android.synthetic.main.list_adm_req_rev.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
-class AdminCreateQue : AppCompatActivity() {
+class AdminViewAct : AppCompatActivity() {
 
     private lateinit var actRef: DatabaseReference
     private lateinit var adapter: FirebaseRecyclerAdapter<Activity, ListHolder>
@@ -32,23 +27,50 @@ class AdminCreateQue : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_create_que)
+        setContentView(R.layout.activity_admin_view_act)
+
+        setSupportActionBar(bar_view_act)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.isSmoothScrollbarEnabled = true
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_crt_req.layoutManager = layoutManager
+        rv_view_act.layoutManager = layoutManager
 
         actRef = FirebaseDatabase.getInstance().getReference("Activity")
+
     }
 
     override fun onStart() {
         super.onStart()
+        query = actRef.orderByChild("status").equalTo("1")
         setList()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_adm_act, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.all_adm_act -> {
+                query = actRef
+                setList()
+            }
+            R.id.open_adm_act -> {
+                query = actRef.orderByChild("status").equalTo("1")
+                setList()
+            }
+            R.id.close_adm_act -> {
+                query = actRef.orderByChild("status").equalTo("0")
+                setList()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setList() {
-        query = actRef.orderByChild("status").equalTo("1")
 
         val option = FirebaseRecyclerOptions.Builder<Activity>()
             .setQuery(query, Activity::class.java)
@@ -66,34 +88,15 @@ class AdminCreateQue : AppCompatActivity() {
 
                 holder.bind(model)
                 holder.itemView.setOnClickListener {
-                    val matDialog = AlertDialog.Builder(context)
-                    matDialog.setTitle("Join Activity")
-                    matDialog.setMessage("Are you sure ?")
-                    matDialog.setPositiveButton("Confirm") { dialog, which ->
-                        createQue(actId!!)
-                    }.setNegativeButton("cancel") { dialog, which ->
-                    }
-                    matDialog.show()
+                    val intent = Intent(context, AdminManageRequest::class.java)
+                    intent.putExtra("actId", actId)
+                    startActivity(intent)
                 }
 
             }
         }
-        rv_crt_req.adapter = adapter
-    }
+        rv_view_act.adapter = adapter
 
-    private fun createQue(actId: String) {
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
-        val date = formatter.format(Date())
-        val getUid = FirebaseAuth.getInstance().currentUser?.uid
-        val status = "0"
-        val queue = Queue(getUid.toString(), actId, date, status)
-        FirebaseDatabase.getInstance().getReference("Queue").child(actId).push().setValue(queue)
-            .addOnSuccessListener {
-                toast("Request sent success")
-            }.addOnFailureListener {
-                toast("Request failed")
-                createLog("create", it.message.toString())
-            }
     }
 
     private fun createLog(s: String, message: String?) {
@@ -124,4 +127,5 @@ class AdminCreateQue : AppCompatActivity() {
             itemView.tv_ls_rev_date.text = activity.description
         }
     }
+
 }

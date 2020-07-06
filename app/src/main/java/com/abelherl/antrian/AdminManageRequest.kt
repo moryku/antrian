@@ -1,12 +1,12 @@
 package com.abelherl.antrian
 
-import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abelherl.antrian.dataclass.Activity
@@ -14,21 +14,24 @@ import com.abelherl.antrian.dataclass.Queue
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_admin_manage_request.*
-import kotlinx.android.synthetic.main.list_req.view.*
+import kotlinx.android.synthetic.main.list_adm_req_rev.view.*
 
 class AdminManageRequest : AppCompatActivity() {
 
     private lateinit var queRef: DatabaseReference
     private lateinit var adapter: FirebaseRecyclerAdapter<Queue, ListHolder>
     private lateinit var query: Query
+    private lateinit var getId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_manage_request)
+
+        getId = intent.getStringExtra("actId")
+        setSupportActionBar(bar_mng_req)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.isSmoothScrollbarEnabled = true
@@ -38,7 +41,7 @@ class AdminManageRequest : AppCompatActivity() {
         setSupportActionBar(bar_mng_req)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        queRef = FirebaseDatabase.getInstance().getReference("Queue")
+        queRef = FirebaseDatabase.getInstance().getReference("Queue").child(getId)
     }
 
     override fun onStart() {
@@ -54,15 +57,17 @@ class AdminManageRequest : AppCompatActivity() {
             .build()
         adapter = object : FirebaseRecyclerAdapter<Queue, ListHolder>(option){
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
-                val view = layoutInflater.inflate(R.layout.list_req, parent, false)
+                val view = layoutInflater.inflate(R.layout.list_adm_req_rev, parent, false)
                 return ListHolder(view)
             }
 
             override fun onBindViewHolder(holder: ListHolder, position: Int, model: Queue) {
                 val context = holder.itemView.context
                 val reqID = getRef(position).key.toString()
+                val count = position + 1
 
-                holder.bind(model)
+                holder.bind(model, getId)
+                holder.itemView.tv_ls_rev_que_no.text = "Antrian no.$count"
                 holder.itemView.setOnClickListener {
                     val comAlert = MaterialAlertDialogBuilder(context)
                     comAlert.setTitle("Confirm Request")
@@ -83,7 +88,7 @@ class AdminManageRequest : AppCompatActivity() {
     }
 
     private fun dismissQue(reqID: String) {
-        FirebaseDatabase.getInstance().getReference("Queue").child(reqID).child("status").setValue("2")
+        FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("3")
             .addOnSuccessListener {
                 toast("Dismissed")
             }.addOnFailureListener {
@@ -93,11 +98,11 @@ class AdminManageRequest : AppCompatActivity() {
     }
 
     private fun completeQue(reqID: String) {
-        FirebaseDatabase.getInstance().getReference("Queue").child(reqID).child("status").setValue("1")
+        FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("1")
             .addOnSuccessListener {
-                toast("Update success")
+                toast("Confirmed")
             }.addOnFailureListener {
-                toast("Update failed")
+                toast("Confirmation failed")
                 createLog("update", it.message.toString())
             }
     }
@@ -111,9 +116,30 @@ class AdminManageRequest : AppCompatActivity() {
     }
 
     class ListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(queue: Queue){
-            itemView.tv_ls_req_status.text = queue.status
-            itemView.tv_ls_req_time.text = queue.time
+        fun bind( queue: Queue, getId: String){
+            setTime(getId, itemView)
+            itemView.tv_ls_rev_status.text = "Antrian Ditunda"
+            itemView.tv_ls_rev_date.text = queue.time
+        }
+
+        private fun setTime(actId: String, itemView: View) {
+            FirebaseDatabase.getInstance().getReference("Activity").child(actId)
+                .addListenerForSingleValueEvent(object: ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d("getTime", error.message)
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val getQueue = snapshot.getValue(Activity::class.java)
+                        val title = getQueue?.title.toString()
+                        val start = getQueue?.start.toString()
+                        val finish = getQueue?.finish.toString()
+
+                        itemView.tv_ls_rev_title.text = title
+                        itemView.tv_ls_rev_time.text = "$start - $finish"
+                    }
+
+                })
         }
     }
 
