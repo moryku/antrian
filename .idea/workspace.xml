@@ -15,9 +15,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89764681-1931-4766-9307-d8edc1a42adc" name="Default Changelist" comment="Fully working DetailKegiatanActivity">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-nodpi/bg_small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_close_black_24dp.xml" afterDir="false" />
+    <list default="true" id="89764681-1931-4766-9307-d8edc1a42adc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -26,17 +24,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/ActivityUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/ActivityUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/DetailKegiatanActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/DetailKegiatanActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/adapter/KegiatanAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/adapter/KegiatanAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/data/AntrianItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/data/AntrianItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/data/KegiatanItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/abelherl/antrian/data/KegiatanItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_kegiatan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail_kegiatan.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_kegiatan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_kegiatan.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +35,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_S_API_27" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CB512A67Q3" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -259,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593795717779</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fully working DetailKegiatanActivity and major bug fix in main RecyclerView (finally *sighs*)">
+      <created>1593947674523</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1593947674523</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,6 +284,7 @@
     <MESSAGE value="Stuffs" />
     <MESSAGE value="Connect to Firebase and RecyclerView improvements" />
     <MESSAGE value="Added ActivityDetailKegiatan and UI improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ActivityDetailKegiatan and UI improvements" />
+    <MESSAGE value="Fully working DetailKegiatanActivity and major bug fix in main RecyclerView (finally *sighs*)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fully working DetailKegiatanActivity and major bug fix in main RecyclerView (finally *sighs*)" />
   </component>
 </project>

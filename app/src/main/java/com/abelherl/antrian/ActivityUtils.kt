@@ -19,12 +19,17 @@ fun goTo(context: Context, intent: Intent, finish: Boolean) {
     context.startActivity(intent)
     AcTrans.Builder(context).performFade()
 }
-fun updateAntrian(antrianItem: AntrianItem, uploadToFirebase: Boolean) {
+fun updateAntrian(antrianItem: AntrianItem, uploadToFirebase: Boolean, create: Boolean) {
     val ref = FirebaseDatabase.getInstance().reference
     val auth = FirebaseAuth.getInstance()
 
     if (uploadToFirebase) {
-        ref.child("Queue").child(antrianItem.id).push().setValue(antrianItem)
+        if (create) {
+            ref.child("Queue").child(antrianItem.activity_id).push().setValue(antrianItem)
+        }
+        else {
+            ref.child("Queue").child(antrianItem.activity_id).child(antrianItem.id).push().setValue(antrianItem)
+        }
     }
 }
 fun getKegiatan() : ArrayList<KegiatanItem>{

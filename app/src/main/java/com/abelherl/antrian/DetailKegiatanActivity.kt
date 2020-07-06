@@ -1,5 +1,6 @@
 package com.abelherl.antrian
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,8 +14,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import id.voela.actrans.AcTrans
 import kotlinx.android.synthetic.main.activity_detail_kegiatan.*
 import kotlinx.android.synthetic.main.item_kegiatan.*
+import java.util.*
 
 
 class DetailKegiatanActivity : AppCompatActivity() {
@@ -23,6 +26,10 @@ class DetailKegiatanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_kegiatan)
         initView()
+    }
+
+    override fun onBackPressed() {
+        buttonBack()
     }
 
     private fun initView() {
@@ -34,7 +41,23 @@ class DetailKegiatanActivity : AppCompatActivity() {
         tv_participant_detail.text = bundle.getString("participant")
         tv_desc_detail.text = bundle.getString("description")
 
+        ib_back_kegiatan.setBackgroundColor(Color.TRANSPARENT)
+        ib_back_kegiatan.setOnClickListener { buttonBack() }
+
+        bt_ikut_detail.setOnClickListener { buttonIkut(bundle.getString("id")!!) }
+
         setData(bundle.getString("id")!!)
+    }
+
+    private fun buttonBack() {
+        super.onBackPressed()
+        AcTrans.Builder(this).performFade()
+    }
+
+    private fun buttonIkut(id: String) {
+        val date = Date().date.toString() + "/" + Date().month.toString() + "/" + Date().year.toString()
+        val item = AntrianItem("0", FirebaseAuth.getInstance().currentUser!!.uid, id, date, "0")
+        updateAntrian(item, true, true)
     }
 
     private fun setData(id: String) {
@@ -96,7 +119,7 @@ class DetailKegiatanActivity : AppCompatActivity() {
         ) { dialog, which -> // Do nothing but close the dialog
             Toast.makeText(this, "Update data", Toast.LENGTH_SHORT).show()
             item.status = "3"
-            updateAntrian(item, true)
+            updateAntrian(item, true, false)
             dialog.dismiss()
         }
 
