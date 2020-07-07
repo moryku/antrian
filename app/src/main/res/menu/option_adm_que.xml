@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/all_adm_que"
+        android:title="All"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/complete_adm_que"
+        android:title="Completed"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/cancel_adm_que"
+        android:title="Cancel"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/wait_adm_que"
+        android:title="Waiting"
+        app:showAsAction="never"/>
+</menu>
