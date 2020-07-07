@@ -85,10 +85,10 @@ class DetailKegiatanActivity : AppCompatActivity() {
                                     try {
                                         if (item.uid == FirebaseAuth.getInstance().currentUser!!.uid && item.status != "3") {
                                             bt_ikut_detail.visibility = View.GONE
-                                            rl_antrian_kegiatan.visibility = View.VISIBLE
+                                            rl_antrian_detail.visibility = View.VISIBLE
 
                                             bt_ikut_detail.invalidate()
-                                            rl_antrian_kegiatan.invalidate()
+                                            rl_antrian_detail.invalidate()
 
                                             if (item.status == "2") {
                                                 tv_status_detail.text = "Nomor Anda: " + antrian
