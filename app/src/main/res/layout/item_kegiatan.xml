@@ -3,12 +3,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+<<<<<<< HEAD
     android:paddingTop="20dp"
+=======
+    android:paddingTop="5dp"
+>>>>>>> admin
     android:background="@color/transparent">
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_kegiatan"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="240dp"
+=======
+        android:layout_height="wrap_content"
+>>>>>>> admin
         android:clipToPadding="true"
         android:clipChildren="true"
         app:cardCornerRadius="15dp"
@@ -29,7 +37,10 @@
             android:id="@+id/iv_kegiatan"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+<<<<<<< HEAD
             android:layout_marginBottom="-2dp"
+=======
+>>>>>>> admin
             android:scaleType="fitStart"
             android:adjustViewBounds="true"
             android:background="@drawable/rounded"
@@ -40,7 +51,10 @@
             android:id="@+id/ll_kegiatan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_marginBottom="-1dp"
+=======
+>>>>>>> admin
             android:layout_alignBottom="@id/iv_kegiatan"
             android:gravity="bottom"
             android:background="@drawable/gradient_transparent"
@@ -73,9 +87,13 @@
                 <TextView
                     android:id="@+id/tv_status_kegiatan"
                     android:layout_width="wrap_content"
+<<<<<<< HEAD
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/rl_dots"
                     android:layout_alignBottom="@id/rl_dots"
+=======
+                    android:layout_height="match_parent"
+>>>>>>> admin
                     android:layout_marginLeft="7dp"
                     android:layout_toEndOf="@id/rl_dots"
                     android:maxLines="2"
@@ -120,20 +138,35 @@
                 android:id="@+id/tv_kegiatan_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< HEAD
                 android:text="Antrian Pembayaran SPP Bulan Juli 2020"
                 android:lines="2"
+=======
+                android:layout_marginTop="10dp"
+                android:text="Antrian Pembayaran SPP Bulan Juli 2020"
+                android:maxLines="3"
+>>>>>>> admin
                 android:ellipsize="end"
                 android:gravity="bottom"
                 style="@style/BigTitle"/>
             <TextView
                 android:id="@+id/tv_kegiatan_desc"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="0dp"
                 android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian. "
                 android:layout_marginTop="15dp"
                 android:lines="3"
                 android:ellipsize="end"
                 android:gravity="top"
+=======
+                android:layout_height="wrap_content"
+                android:text="Kegiatan antrian bulanan untuk pembayaran SPP di Pondok Pesantren. Silahkan tekan disini untuk mengikuti antrian. "
+                android:layout_marginTop="15dp"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:gravity="bottom"
+>>>>>>> admin
                 style="@style/BodyWhite"
                 android:alpha="0.9"/>
             <TextView
