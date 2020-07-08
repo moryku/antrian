@@ -17,6 +17,8 @@ import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
 import com.abelherl.antrian.data.UserItem
 import com.abelherl.antrian.goTo
+import com.abelherl.antrian.util.notificationHelper
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.extensions.LayoutContainer
 import kotlin.collections.ArrayList
 
@@ -58,6 +60,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                 }
 
                 Log.d("TAG", "Thing: " + list)
+
             }
 
             tv_title.text = item.title
@@ -80,23 +83,54 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             tv_nomor.visibility = View.GONE
             tv_nomor.invalidate()
             Log.d("TAG", "TIDAK ANTRI: " + tv_nomor.text + listAntrian)
-
+            Log.d("UID", user.id)
             for (antri in listAntrian) {
                 noTotal += 1
 
+                Log.d("ANTRIANNOW", antri.activity_id)
+                Log.d("ANTRIANSTATUS",antri.status)
                 when (antri.status) {
                     "2" -> noSekarang += 1
                     "3" -> noSekarang += 1
                 }
 
                 if (!ikut) {
-                    if (antri.uid == user.id && antri.status == "2") {
+                    if (antri.uid == user.id && antri.status == "1") {
                         tv_nomor.visibility = View.VISIBLE
                         tv_nomor.text = "Nomor Anda: " + noTotal
                         tv_nomor.invalidate()
                         Log.d("TAG", "MASUK ANTRI: " + tv_nomor.text)
                         ikut = true
+
+                        if ( noTotal - noSekarang == 1 ){
+                            notificationHelper(context,"Yeay, giliran kamu berikutnya di "+ item.title,"Tetap sabar menunggu ya!!!")
+                        }
+
+//                        if (noTotal - noSekarang == 5){
+//                            notificationHelper(context,"Hai, giliran kamu tinggal lima orang lagi nih","Segera bersiap-siap ya!!!")
+//                        }
+//                        if (noTotal - noSekarang == 10){
+//                            notificationHelper(context,"Antrian kamu tinggal 10 orang lagi","Nikmati waktu dan segera bersiap-siap ya!!!")
+//                        }
                     }
+
+//
+
+// titip kodingan e sek
+//                var now = 0
+//                var next = 1
+//                val userData = FirebaseAuth.getInstance().currentUser!!
+//                while (now < list.size){
+//                    if (next < list.size){
+//                        if (antri[now].status == "2" || antri[now].status == "4"){
+//                            if (antri[next].status == "1" && antri[next].uid == userData.uid){
+//                                notificationHelper(context,"Yeay, giliran kamu berikutnya di ","Tetap sabar menunggu ya!!!")
+//                            }
+//                        }
+//                        now += 1
+//                        next += 2
+//                    }
+//                }
                 }
             }
 
@@ -135,7 +169,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                     intent.putExtra("estimation", tv_estimation.text.toString())
                     intent.putExtra("time", tv_time.text.toString())
                     intent.putExtra("participant", tv_participant.text.toString())
-
+                    Log.d("ID", item.id)
                     goTo(context, intent, false)
                 }
             }

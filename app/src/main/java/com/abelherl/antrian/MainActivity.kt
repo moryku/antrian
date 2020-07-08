@@ -11,6 +11,7 @@ import com.abelherl.antrian.adapter.KegiatanAdapter
 import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
 import com.abelherl.antrian.data.UserItem
+import com.abelherl.antrian.util.notificationHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -117,6 +118,7 @@ class MainActivity : AppCompatActivity() {
                         if (listKegiatan.size != 0) {
                             tv_empty_main.visibility = View.GONE
                         }
+
                     }
                 })
             }
@@ -125,10 +127,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         setData()
+        setCurrentUserData()
     }
 
     fun convertDiptoPix(dip: Int): Int {
         val scale: Float = this.resources.displayMetrics.density
         return (dip * scale + 0.5f).toInt()
+    }
+
+    private fun setCurrentUserData(){
+        val currentUser= FirebaseAuth.getInstance().currentUser
+        user = UserItem(currentUser!!.uid, currentUser!!.displayName!!, currentUser!!.email!!)
     }
 }

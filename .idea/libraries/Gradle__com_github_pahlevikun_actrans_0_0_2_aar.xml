@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.pahlevikun:actrans:0.0.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9377d5f51a9f8c1321b2d5bee1221fc9/jetified-actrans-0.0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9377d5f51a9f8c1321b2d5bee1221fc9/jetified-actrans-0.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/51ea15ec21616d286edec594635bd4fe/jetified-actrans-0.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/51ea15ec21616d286edec594635bd4fe/jetified-actrans-0.0.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

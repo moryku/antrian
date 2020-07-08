@@ -28,7 +28,7 @@ fun updateAntrian(antrianItem: AntrianItem, uploadToFirebase: Boolean, create: B
             ref.child("Queue").child(antrianItem.activity_id).push().setValue(antrianItem)
         }
         else {
-            ref.child("Queue").child(antrianItem.activity_id).child(antrianItem.id).push().setValue(antrianItem)
+            ref.child("Queue").child(antrianItem.activity_id).child(antrianItem.id).setValue(antrianItem)
         }
     }
 }

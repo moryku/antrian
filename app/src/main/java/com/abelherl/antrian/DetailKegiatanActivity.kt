@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
+import com.abelherl.antrian.util.notificationHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -45,7 +46,9 @@ class DetailKegiatanActivity : AppCompatActivity() {
         ib_back_kegiatan.setOnClickListener { buttonBack() }
 
         bt_ikut_detail.setOnClickListener { buttonIkut(bundle.getString("id")!!) }
-
+//        bt_ikut_detail.setOnClickListener {
+//            notificationHelper(this@DetailKegiatanActivity,"Hurray!!! Kamu dapat antrian nomor 10","Tetap sabar menunggu ya!!!")
+//        }
         setData(bundle.getString("id")!!)
     }
 
@@ -90,11 +93,15 @@ class DetailKegiatanActivity : AppCompatActivity() {
                                             bt_ikut_detail.invalidate()
                                             rl_antrian_detail.invalidate()
 
-                                            if (item.status == "2") {
+                                            if (item.status == "1") {
                                                 tv_status_detail.text = "Nomor Anda: " + antrian
                                             }
 
                                             bt_batal_detail.setOnClickListener { buttonBatal(item) }
+                                        }
+                                        if (item.uid == FirebaseAuth.getInstance().currentUser!!.uid && item.status == "3"){
+                                            bt_ikut_detail.visibility = View.VISIBLE
+                                            rl_antrian_detail.visibility = View.GONE
                                         }
                                     } catch (e: NullPointerException) {
                                         Log.d("TAG", "No User Found: " + e)
@@ -132,4 +139,5 @@ class DetailKegiatanActivity : AppCompatActivity() {
         val alert: AlertDialog = builder.create()
         alert.show()
     }
+
 }
