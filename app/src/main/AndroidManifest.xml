@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.abelherl.antrian">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,34 +12,56 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".HistoryQueue"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity">
+
+        </activity>
+        <activity android:name=".DetailKegiatanActivity" />
+        <activity
+            android:name=".AdminViewAct"
+            android:parentActivityName=".AdminAdminHome" >
+        </activity>
+        <activity
+            android:name=".AdminViewQue"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity
+            android:name=".AdminCreateQue"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity
+            android:name=".AdminUpdateAct"
+            android:parentActivityName=".AdminManageActivity" />
+        <activity
+            android:name=".AdminCreateAct"
+            android:parentActivityName=".AdminManageActivity" />
+        <activity
+            android:name=".AdminManageQueue"
+            android:parentActivityName=".AdminViewQue" />
+        <activity
+            android:name=".AdminManageRequest"
+            android:parentActivityName=".AdminViewAct" />
+        <activity
+            android:name=".AdminManageActivity"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity android:name=".AdminAdminHome" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailKegiatanActivity"/>
-        <activity android:name=".AdminViewAct"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminViewQue"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminCreateQue"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminUpdateAct"
-            android:parentActivityName=".AdminManageActivity"/>
-        <activity android:name=".AdminCreateAct"
-            android:parentActivityName=".AdminManageActivity"/>
-        <activity android:name=".AdminManageQueue"
-            android:parentActivityName=".AdminViewQue"/>
-        <activity android:name=".AdminManageRequest"
-            android:parentActivityName=".AdminViewAct"/>
-        <activity android:name=".AdminManageActivity"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminAdminHome" />
-        <activity android:name=".ManageProfil"></activity>
+
+        <activity android:name=".ManageProfil" />
+        <service
+            android:name=".util.FirebaseMessaging"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

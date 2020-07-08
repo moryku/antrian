@@ -11,14 +11,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.abelherl.antrian.data.AntrianItem
+import com.abelherl.antrian.data.UserItem
 import com.abelherl.antrian.dataclass.Activity
 import com.abelherl.antrian.dataclass.Queue
+import com.abelherl.antrian.util.sendNotificationByTopic
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_admin_manage_queue.*
 import kotlinx.android.synthetic.main.list_adm_req_rev.view.*
+import javax.security.auth.Subject
 
 class AdminManageQueue : AppCompatActivity() {
 
@@ -26,7 +30,7 @@ class AdminManageQueue : AppCompatActivity() {
     private lateinit var adapter: FirebaseRecyclerAdapter<Queue, ListHolder>
     private lateinit var query: Query
     private lateinit var getId: String
-
+    var queueTitle: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_manage_queue)
@@ -49,6 +53,7 @@ class AdminManageQueue : AppCompatActivity() {
         super.onStart()
         query = queRef.orderByChild("status").equalTo("1")
         setList()
+        setTitle(getId)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -96,19 +101,35 @@ class AdminManageQueue : AppCompatActivity() {
                 val reqID = getRef(position).key.toString()
                 val count = position + 1
 
+                Log.d("reqId", reqID)
+                Log.d("jumlahsnapshot",snapshots.size.toString())
+
                 holder.bind(model, reqID)
                 holder.itemView.tv_ls_rev_que_no.text = "Antrian no.$count"
                 holder.itemView.setOnClickListener {
                     val comAlert = MaterialAlertDialogBuilder(context, android.R.style.ThemeOverlay_Material_Dark)
                     comAlert.setTitle("Complete Request")
                     comAlert.setMessage("Are you sure ?")
-                    comAlert.setPositiveButton("Confirm") { dialog, which ->
-                        completeQue(reqID)
-                    }.setNegativeButton("Cancel"){dialog, which ->
+                    comAlert
+                        .setPositiveButton("Confirm") { dialog, which ->
+                            completeQue(reqID, model.uid)
 
-                    }.setNeutralButton("Dismiss"){dialog, which ->
-                        dismissQue(reqID)
-                    }
+                            if (snapshots.size >= 2) {
+                                val nextId = snapshots.getSnapshot(1)?.getValue(AntrianItem::class.java)
+                                sendNotificationByTopic(this@AdminManageQueue, nextId?.uid.toString(), "Tunggu sebentar lagi yaa!!!", "Hore, giliran kamu selanjutnya di " + queueTitle)
+                            }
+
+                            if (snapshots.size >= 5){
+                                val nextId = snapshots.getSnapshot(4)?.getValue(AntrianItem::class.java)
+                                sendNotificationByTopic(this@AdminManageQueue, nextId?.uid.toString(), "Tunggu sebentar lagi yaa!!!", "Kurang 5 antrian lagi di " + queueTitle)
+
+                            }
+                        }
+                        .setNegativeButton("Cancel"){dialog, which ->
+
+                        }.setNeutralButton("Dismiss"){dialog, which ->
+                            dismissQue(reqID, model.uid)
+                        }
 
                     if (model.status == "1"){
                         comAlert.show()
@@ -122,7 +143,7 @@ class AdminManageQueue : AppCompatActivity() {
         rv_mng_que.adapter = adapter
     }
 
-    private fun dismissQue(reqID: String) {
+    private fun dismissQue(reqID: String, uidTarget: String) {
         FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("3")
             .addOnSuccessListener {
                 toast("Dismissed")
@@ -130,9 +151,11 @@ class AdminManageQueue : AppCompatActivity() {
                 toast("Dismiss failed")
                 createLog("Dismiss failed", it.message.toString())
             }
+        sendNotificationByTopic(this@AdminManageQueue, uidTarget, "Coba lain kali ya!!!", "Maaf, antrian anda di "+queueTitle+" ditolak")
+
     }
 
-    private fun completeQue(reqID: String) {
+    private fun completeQue(reqID: String, uidTarget: String) {
         FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("2")
             .addOnSuccessListener {
                 toast("Update success")
@@ -140,6 +163,7 @@ class AdminManageQueue : AppCompatActivity() {
                 toast("Update failed")
                 createLog("update", it.message.toString())
             }
+        sendNotificationByTopic(this@AdminManageQueue, uidTarget, "Silahkan masuk!!!", "Horeee!!! Sekarang giliran anda di "+queueTitle)
     }
 
     private fun createLog(s: String, message: String?) {
@@ -148,6 +172,23 @@ class AdminManageQueue : AppCompatActivity() {
 
     private fun toast(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+    }
+
+    fun setTitle(actId: String){
+        FirebaseDatabase.getInstance().getReference("Activity").child(actId)
+            .addListenerForSingleValueEvent(object: ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("getTime", error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val getQueue = snapshot.getValue(Activity::class.java)
+                    val title = getQueue?.title.toString()
+
+                    queueTitle = title
+                }
+
+            })
     }
 
     class ListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -168,7 +209,6 @@ class AdminManageQueue : AppCompatActivity() {
                     "Antrian Dibatalkan"
                 }
             }
-
             itemView.tv_ls_rev_status.text = status
             itemView.tv_ls_rev_date.text = queue.time
         }
@@ -188,6 +228,7 @@ class AdminManageQueue : AppCompatActivity() {
 
                         itemView.tv_ls_rev_title.text = title
                         itemView.tv_ls_rev_time.text = "$start - $finish"
+
 
                     }
 
