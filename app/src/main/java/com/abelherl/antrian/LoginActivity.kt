@@ -5,7 +5,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_manageprofil.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,6 +31,26 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun adminCheck(uid: String) {
+        FirebaseDatabase.getInstance().getReference("User").child(uid).addListenerForSingleValueEvent( object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var intent = Intent()
+                if (dataSnapshot.child("level").value.toString() == "admin") {
+                    intent = Intent(this@LoginActivity, AdminAdminHome::class.java)
+                }
+                else {
+                    intent = Intent(this@LoginActivity, MainActivity::class.java)
+                }
+                goTo(this@LoginActivity, intent, true)
+            }
+
+        })
     }
 
     private fun loginEmailPassword() {
@@ -52,10 +77,7 @@ class LoginActivity : AppCompatActivity() {
     private fun moveNextActivity() {
         var currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser != null){
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+            adminCheck(currentUser.uid)
         }
     }
 }

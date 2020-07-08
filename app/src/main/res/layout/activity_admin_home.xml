@@ -37,9 +37,9 @@
         <Button
             android:id="@+id/btn_mng_act"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:padding="5dp"
-            android:backgroundTint="@color/lightGreen"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
@@ -50,9 +50,9 @@
         <Button
             android:id="@+id/btn_mng_que"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:padding="5dp"
-            android:backgroundTint="@color/lightGreen"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
@@ -63,9 +63,9 @@
         <Button
             android:id="@+id/btn_mng_req"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:padding="5dp"
-            android:backgroundTint="@color/lightGreen"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
@@ -76,15 +76,28 @@
         <Button
             android:id="@+id/btn_crt_que"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
             android:padding="5dp"
-            android:backgroundTint="@color/lightGreen"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="Create Queue"/>
+
+        <Button
+            android:id="@+id/btn_logout_admin"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:padding="5dp"
+            style="?borderlessButtonStyle"
+            android:textColor="@color/lightRed"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Logout"/>
 
     </LinearLayout>
 

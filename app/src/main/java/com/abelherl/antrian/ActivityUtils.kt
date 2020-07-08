@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import id.voela.actrans.AcTrans
 
 fun goTo(context: Context, intent: Intent, finish: Boolean) {
-    if (finish) { intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) }
+    if (finish) { intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) }
     context.startActivity(intent)
     AcTrans.Builder(context).performFade()
 }
@@ -28,7 +28,7 @@ fun updateAntrian(antrianItem: AntrianItem, uploadToFirebase: Boolean, create: B
             ref.child("Queue").child(antrianItem.activity_id).push().setValue(antrianItem)
         }
         else {
-            ref.child("Queue").child(antrianItem.activity_id).child(antrianItem.id).push().setValue(antrianItem)
+            ref.child("Queue").child(antrianItem.activity_id).child(antrianItem.id).setValue(antrianItem)
         }
     }
 }

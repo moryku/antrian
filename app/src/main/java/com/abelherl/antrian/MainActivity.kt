@@ -1,6 +1,7 @@
 package com.abelherl.antrian
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,7 +24,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    var user = UserItem("nomi430", "Arifudin", "ajod@gmail.com")
+//    var user = UserItem("nomi430", "Arifudin", "ajod@gmail.com")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,14 +106,32 @@ class MainActivity : AppCompatActivity() {
 
                         val layoutManager = LinearLayoutManager(this@MainActivity)
                         val lp: ViewGroup.LayoutParams = rv_main.getLayoutParams()
-                        val height2: Int = listKegiatan.size * 270
+                        val height2: Int = listKegiatan.size * 255
 
                         lp.height = convertDiptoPix(height2)
 
                         rv_main.setLayoutParams(lp)
                         rv_main.layoutManager = layoutManager
-                        rv_main.adapter = KegiatanAdapter(this@MainActivity, listKegiatan, test, listAntrian, user)
+                        rv_main.adapter = KegiatanAdapter(this@MainActivity, listKegiatan, test, listAntrian, FirebaseAuth.getInstance().currentUser!!)
                         rv_main.invalidate()
+
+                        val list = listAntrian[1]
+
+                        val user = FirebaseAuth.getInstance().currentUser!!
+                        var now = 0
+                        var next = 1
+
+                        while (now < list.size) {
+                            if (next < list.size) {
+                                if (list[now].status == "2" || list[now].status == "4") {
+                                    if (list[next].status == "1" && list[next].uid == user.uid) {
+                                        // send notif
+                                    }
+                                }
+                            }
+                            now += 1
+                            next += 1
+                        }
 
                         if (listKegiatan.size != 0) {
                             tv_empty_main.visibility = View.GONE
@@ -125,6 +144,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         setData()
+
+        ib_profile_main.setOnClickListener { buttonProfile() }
+        ib_history_main.setOnClickListener { buttonProfile() }
+    }
+
+    private fun buttonProfile() {
+        val intent = Intent(this, ManageProfil::class.java)
+        goTo(this, intent, false)
     }
 
     fun convertDiptoPix(dip: Int): Int {

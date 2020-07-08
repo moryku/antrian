@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_kegiatan"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="226dp"
         android:clipToPadding="true"
         android:clipChildren="true"
         app:cardCornerRadius="15dp"
@@ -123,7 +123,7 @@
                 android:text="Antrian Pembayaran SPP Bulan Juli 2020"
                 android:lines="2"
                 android:ellipsize="end"
-                android:gravity="bottom"
+                android:gravity="center_vertical"
                 style="@style/BigTitle"/>
             <TextView
                 android:id="@+id/tv_kegiatan_desc"
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Waktu Pelayanan\n08:00 - 15:00"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="1dp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:gravity="bottom"

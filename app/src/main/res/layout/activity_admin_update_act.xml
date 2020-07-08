@@ -135,11 +135,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_upt_act"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/lightGreen"
-            android:text="Update"/>
+            android:layout_marginTop="10dp"
+            android:text="Update"
+            app:backgroundTint="@color/purple" />
 
     </LinearLayout>
 

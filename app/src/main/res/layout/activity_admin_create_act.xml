@@ -135,11 +135,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_crt_act"
-            android:layout_marginTop="10dp"
-            app:backgroundTint="@color/lightGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Activity"/>
+            android:layout_marginTop="10dp"
+            android:text="Create Activity"
+            app:backgroundTint="@color/purple" />
 
     </LinearLayout>
 

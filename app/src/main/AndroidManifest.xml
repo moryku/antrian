@@ -9,34 +9,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".DetailKegiatanActivity"/>
-        <activity android:name=".AdminViewAct"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminViewQue"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminCreateQue"
-            android:parentActivityName=".AdminAdminHome"/>
-        <activity android:name=".AdminUpdateAct"
-            android:parentActivityName=".AdminManageActivity"/>
-        <activity android:name=".AdminCreateAct"
-            android:parentActivityName=".AdminManageActivity"/>
-        <activity android:name=".AdminManageQueue"
-            android:parentActivityName=".AdminViewQue"/>
-        <activity android:name=".AdminManageRequest"
-            android:parentActivityName=".AdminViewAct"/>
-        <activity android:name=".AdminManageActivity"
-            android:parentActivityName=".AdminAdminHome"/>
+            </intent-filter></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".DetailKegiatanActivity" />
+        <activity
+            android:name=".AdminViewAct"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity
+            android:name=".AdminViewQue"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity
+            android:name=".AdminCreateQue"
+            android:parentActivityName=".AdminAdminHome" />
+        <activity
+            android:name=".AdminUpdateAct"
+            android:parentActivityName=".AdminManageActivity" />
+        <activity
+            android:name=".AdminCreateAct"
+            android:parentActivityName=".AdminManageActivity" />
+        <activity
+            android:name=".AdminManageQueue"
+            android:parentActivityName=".AdminViewQue" />
+        <activity
+            android:name=".AdminManageRequest"
+            android:parentActivityName=".AdminViewAct" />
+        <activity
+            android:name=".AdminManageActivity"
+            android:parentActivityName=".AdminAdminHome" />
         <activity android:name=".AdminAdminHome" />
-        <activity android:name=".ManageProfil"></activity>
+        <activity android:name=".ManageProfil" />
     </application>
 
 </manifest>

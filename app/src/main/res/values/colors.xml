@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#252D39</color>
     <color name="colorPrimaryDark">#2C6731</color>
-    <color name="colorAccent">#2A2F40</color>
+    <color name="bg">#2A2F40</color>
 
     <color name="red">#D53D3D</color>
     <color name="orange">#D8742F</color>
@@ -17,6 +17,7 @@
     <color name="teal">#00AC95</color>
     <color name="hint">#99FFFFFF</color>
     <color name="hintBlack">#40000000</color>
+    <color name="hintGreen">#912EB56F</color>
     <color name="white">#eaeaea</color>
     <color name="black">#191919</color>
     <color name="transparent">#00000000</color>

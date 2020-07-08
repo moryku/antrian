@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
-        android:background="@color/colorAccent"
+        android:background="@color/bg"
         android:elevation="10dp">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                 android:text="@string/dashboard"
                 style="@style/Title"/>
             <ImageButton
+                android:id="@+id/ib_profile_main"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
@@ -75,7 +76,7 @@
                     style="@style/Title"
                     android:text="Kegiatan" />
                 <ImageButton
-                    android:id="@+id/bt_sync"
+                    android:id="@+id/ib_history_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

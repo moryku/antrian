@@ -17,10 +17,11 @@ import com.abelherl.antrian.data.AntrianItem
 import com.abelherl.antrian.data.KegiatanItem
 import com.abelherl.antrian.data.UserItem
 import com.abelherl.antrian.goTo
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.extensions.LayoutContainer
 import kotlin.collections.ArrayList
 
-class KegiatanAdapter(private val context: Context, private val items : ArrayList<KegiatanItem>, private val sharedPreferences: SharedPreferences, private val antrian : ArrayList<ArrayList<AntrianItem>>, private val user : UserItem) :
+class KegiatanAdapter(private val context: Context, private val items : ArrayList<KegiatanItem>, private val sharedPreferences: SharedPreferences, private val antrian : ArrayList<ArrayList<AntrianItem>>, private val user : FirebaseUser) :
     RecyclerView.Adapter<KegiatanAdapter.ViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -35,7 +36,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
     }
     class ViewHolder(override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(context: Context, item: KegiatanItem, sharedPreferences: SharedPreferences, list: ArrayList<ArrayList<AntrianItem>>, user: UserItem) {
+        fun bindItem(context: Context, item: KegiatanItem, sharedPreferences: SharedPreferences, list: ArrayList<ArrayList<AntrianItem>>, user: FirebaseUser) {
             val tv_title = containerView.findViewById<TextView>(R.id.tv_kegiatan_title)
             val tv_desc = containerView.findViewById<TextView>(R.id.tv_kegiatan_desc)
             val tv_status = containerView.findViewById<TextView>(R.id.tv_status_kegiatan)
@@ -90,7 +91,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                 }
 
                 if (!ikut) {
-                    if (antri.uid == user.id && antri.status == "2") {
+                    if (antri.uid == user.uid && antri.status == "1") {
                         tv_nomor.visibility = View.VISIBLE
                         tv_nomor.text = "Nomor Anda: " + noTotal
                         tv_nomor.invalidate()

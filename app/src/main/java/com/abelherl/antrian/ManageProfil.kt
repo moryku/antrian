@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.abelherl.antrian.Model.ProfilModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import id.voela.actrans.AcTrans
 import kotlinx.android.synthetic.main.activity_manageprofil.*
 
 class ManageProfil : AppCompatActivity() {
@@ -19,6 +20,10 @@ class ManageProfil : AppCompatActivity() {
     private var Alamat: EditText? = null
     lateinit var ref : DatabaseReference
     private lateinit var auth: FirebaseAuth
+
+    override fun onBackPressed() {
+        buttonBack()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +41,13 @@ class ManageProfil : AppCompatActivity() {
 
         val currentUser = auth.currentUser
 
-        tmpEmail.text = currentUser?.email
+        tmpEmail.setHint(currentUser!!.email)
+
+        btn_logout.setOnClickListener { buttonLogout() }
+        ib_back_profile.setOnClickListener { buttonBack() }
 
         getData()
-        btn_simpan.setOnClickListener{
-            prosesSave()
-        }
+        btn_simpan.setOnClickListener{ prosesSave() }
     }
     private fun prosesSave() {
         val getNamaWali: String = NamaWali?.getText().toString()
@@ -49,8 +55,7 @@ class ManageProfil : AppCompatActivity() {
         val getNoHp: String = NoHp?.getText().toString()
         val getAlamat: String = Alamat?.getText().toString()
 
-
-        if (getNamaWali.isEmpty() && getNamaSantri.isEmpty() && getNoHp.isEmpty() && getAlamat.isEmpty()) {
+        if (getNamaWali.isEmpty() || getNamaSantri.isEmpty() || getNoHp.isEmpty() || getAlamat.isEmpty()) {
             Toast.makeText(this@ManageProfil,"Data tidak boleh ada yang kosong", Toast.LENGTH_SHORT).show()
         } else {
 
@@ -78,21 +83,35 @@ class ManageProfil : AppCompatActivity() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-
                 val getNamaWali = dataSnapshot.child("namaWali").getValue().toString()
                 val getNamaSantri = dataSnapshot.child("namaSantri").getValue().toString()
                 val getNoHp = dataSnapshot.child("noHp").getValue().toString()
                 val getAlamat = dataSnapshot.child("alamat").getValue().toString()
 
-                NamaWali?.setText(getNamaWali)
-                NamaSantri?.setText(getNamaSantri)
-                NoHp?.setText(getNoHp)
-                Alamat?.setText(getAlamat)
+                txtNW.setText(getNamaWali)
+                txtNS?.setText(getNamaSantri)
+                txtNoHp.setText(getNoHp)
+                txtAlamat.setText(getAlamat)
+
+                txtNW.invalidate()
+                txtNS.invalidate()
+                txtNoHp.invalidate()
+                txtAlamat.invalidate()
             }
 
         })
     }
 
+    private fun buttonBack() {
+        super.onBackPressed()
+        AcTrans.Builder(this).performFade()
+    }
+
+    private fun buttonLogout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        goTo(this, intent, true)
+    }
 }
 
 

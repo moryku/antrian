@@ -4,64 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/lightBlue">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_transparent"
+        android:backgroundTint="@color/purple"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="359dp"
         android:layout_height="wrap_content"
+        android:padding="21dp"
+        android:layout_margin="21dp"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/rounded"
+        android:backgroundTint="@color/transparent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LOGIN"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-            android:textColor="#000000"/>
+            android:textAlignment="center"
+            style="@style/BigTitle"/>
 
         <EditText
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:id="@+id/emailLogin"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
             android:layout_centerInParent="true"
             android:hint="Email"
+            style="@style/BodyWhite"
+            android:textColorHint="@color/hint"
             android:inputType="textEmailAddress"/>
 
         <EditText
             android:layout_gravity="center"
             android:id="@+id/passwordLogin"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
             android:layout_centerInParent="true"
             android:layout_below="@id/emailLogin"
             android:hint="Password"
+            android:textColorHint="@color/hint"
+            style="@style/BodyWhite"
             android:inputType="textPassword"/>
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginTop="19dp"
+            android:backgroundTint="@color/hintGreen"
             android:text="Login"
             android:layout_centerInParent="true"
             android:layout_below="@id/passwordLogin"/>
 
-        <Button
+        <TextView
             android:id="@+id/toRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            style="?borderlessButtonStyle"
+            android:textColor="@color/white"
             android:layout_below="@id/btnLogin"
-            android:text="Register"/>
-    </LinearLayout>
-
+            android:text="Register"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

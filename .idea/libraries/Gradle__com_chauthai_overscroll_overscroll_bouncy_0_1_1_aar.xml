@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.chauthai.overscroll:overscroll-bouncy:0.1.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/964f08f2cffebc74b7c0d9144b2ae3a1/jetified-overscroll-bouncy-0.1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/964f08f2cffebc74b7c0d9144b2ae3a1/jetified-overscroll-bouncy-0.1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20ebac2178324ff46e1891bb3bb789a3/jetified-overscroll-bouncy-0.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20ebac2178324ff46e1891bb3bb789a3/jetified-overscroll-bouncy-0.1.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.chauthai.overscroll/overscroll-bouncy/0.1.1/8576d5dee53a036b9766c06c6c7ff9c0bad35e9e/overscroll-bouncy-0.1.1-javadoc.jar!/" />

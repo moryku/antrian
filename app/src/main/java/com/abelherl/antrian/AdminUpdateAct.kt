@@ -75,7 +75,7 @@ class AdminUpdateAct : AppCompatActivity() {
             util.createLog("db", exception.message.toString())
         }
 
-        actRef.child("desc").setValue(desc).addOnSuccessListener {
+        actRef.child("description").setValue(desc).addOnSuccessListener {
             util.createLog("update", "update desc success")
         }.addOnFailureListener { exception ->
             util.toast(exception.message.toString())

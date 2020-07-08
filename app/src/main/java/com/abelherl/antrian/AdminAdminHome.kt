@@ -3,6 +3,7 @@ package com.abelherl.antrian
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_admin_home.*
 
 class AdminAdminHome : AppCompatActivity() {
@@ -29,5 +30,14 @@ class AdminAdminHome : AppCompatActivity() {
             startActivity(Intent(this, AdminCreateQue::class.java))
         }
 
+        btn_logout_admin.setOnClickListener {
+            buttonLogout()
+        }
+    }
+
+    private fun buttonLogout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        goTo(this, intent, true)
     }
 }

@@ -1,5 +1,6 @@
 package com.abelherl.antrian
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -82,22 +83,21 @@ class DetailKegiatanActivity : AppCompatActivity() {
                                 if (child.key != "status") {
                                     item = child.getValue(AntrianItem::class.java)!!
                                     item.id = child.key!!
-                                    try {
-                                        if (item.uid == FirebaseAuth.getInstance().currentUser!!.uid && item.status != "3") {
+                                    if (item.uid == FirebaseAuth.getInstance().currentUser!!.uid) {
+                                        if (item.status == "0" || item.status == "1") {
                                             bt_ikut_detail.visibility = View.GONE
                                             rl_antrian_detail.visibility = View.VISIBLE
 
                                             bt_ikut_detail.invalidate()
                                             rl_antrian_detail.invalidate()
 
-                                            if (item.status == "2") {
+                                            if (item.status == "1") {
                                                 tv_status_detail.text = "Nomor Anda: " + antrian
                                             }
 
+                                            Log.d("TAG", "User: " + item)
                                             bt_batal_detail.setOnClickListener { buttonBatal(item) }
                                         }
-                                    } catch (e: NullPointerException) {
-                                        Log.d("TAG", "No User Found: " + e)
                                     }
                                     antrian++
                                 }
@@ -119,8 +119,23 @@ class DetailKegiatanActivity : AppCompatActivity() {
         ) { dialog, which -> // Do nothing but close the dialog
             Toast.makeText(this, "Update data", Toast.LENGTH_SHORT).show()
             item.status = "3"
-            updateAntrian(item, true, false)
+
+            FirebaseDatabase.getInstance().getReference("Queue").child(item.activity_id).child(item.id).child("status").setValue("3")
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Dismissed", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Dismiss failed", Toast.LENGTH_SHORT).show()
+                    Log.d("TAG", "Dismiss failed: " + it.message.toString())
+                }
+
+//            updateAntrian(item, true, false)
             dialog.dismiss()
+
+            bt_ikut_detail.visibility = View.VISIBLE
+            rl_antrian_detail.visibility = View.GONE
+
+            bt_ikut_detail.invalidate()
+            rl_antrian_detail.invalidate()
         }
 
         builder.setNegativeButton("Tidak"

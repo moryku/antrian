@@ -6,8 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.abelherl.antrian.Model.ProfilModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -20,14 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         mAuth = FirebaseAuth.getInstance()
-        ref = FirebaseDatabase.getInstance().getReference("User")
-
-        if(mAuth.getCurrentUser() != null){
-            intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        else{ }
+        ref = FirebaseDatabase.getInstance().reference
 
         btnRegister.setOnClickListener {
             createEmailPassword()
@@ -44,8 +36,11 @@ class RegisterActivity : AppCompatActivity() {
         val email = emailRegister.text.toString()
         val password = passwordRegister.text.toString()
 
-        if(email == "" || password == ""){
-            Toast.makeText(this@RegisterActivity, "Isilah bre", Toast.LENGTH_SHORT).show()
+        if (email == "") {
+            Toast.makeText(this, "Please Write Email.", Toast.LENGTH_LONG).show()
+        }
+        else if (password == "") {
+            Toast.makeText(this, "Please Write Password.", Toast.LENGTH_LONG).show()
         }
         else {
              mAuth.createUserWithEmailAndPassword(email, password)
@@ -55,10 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                         ref.child(mAuth.getCurrentUser()!!.getUid()).setValue(profile).addOnCompleteListener { task ->
                             if(task.isSuccessful){
                                 //Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                                startActivity(intent)
-                                finish()
+                                adminCheck(mAuth.currentUser!!.uid)
                             }
                             else{
                                 Toast.makeText(this@RegisterActivity, "Error Message:" + task.exception!!.message.toString(), Toast.LENGTH_LONG).show()
@@ -69,5 +61,25 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    private fun adminCheck(uid: String) {
+        FirebaseDatabase.getInstance().getReference("User").child(uid).addListenerForSingleValueEvent( object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var intent = Intent()
+                if (dataSnapshot.child("level").value.toString() == "admin") {
+                    intent = Intent(this@RegisterActivity, AdminAdminHome::class.java)
+                }
+                else {
+                    intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                }
+                goTo(this@RegisterActivity, intent, true)
+            }
+
+        })
     }
 }
