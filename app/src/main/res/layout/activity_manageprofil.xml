@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".ManageProfil">
+
+    <TextView
+        android:id="@+id/tmpEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:textColor="#ED2121"
+        android:textSize="25sp">
+    </TextView>
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Wali"
+        android:textColor="#000000"
+        android:textSize="20sp">
+        </TextView>
+
+    <EditText
+        android:id="@+id/txtNW"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp">
+    </EditText>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Santri"
+        android:textColor="#000000"
+        android:textSize="20sp">
+        </TextView>
+
+    <EditText
+        android:id="@+id/txtNS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp">
+    </EditText>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No HP"
+        android:inputType="number"
+        android:textColor="#000000"
+        android:textSize="20sp">
+        </TextView>
+
+    <EditText
+        android:id="@+id/txtNoHp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="15sp">
+    </EditText>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:textColor="#000000"
+        android:textSize="20sp">
+        </TextView>
+
+    <EditText
+        android:id="@+id/txtAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp">
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Simpan">
+
+    </Button>
+</LinearLayout>
