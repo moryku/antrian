@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonProfile() {
         val intent = Intent(this, ManageProfil::class.java)
         goTo(this, intent, false)
-        setCurrentUserData()
+//        setCurrentUserData()
     }
 
     fun convertDiptoPix(dip: Int): Int {
@@ -162,8 +162,8 @@ class MainActivity : AppCompatActivity() {
         return (dip * scale + 0.5f).toInt()
     }
 
-    private fun setCurrentUserData(){
-        val currentUser= FirebaseAuth.getInstance().currentUser
-        user = UserItem(currentUser!!.uid, currentUser!!.displayName!!, currentUser!!.email!!)
-    }
+//    private fun setCurrentUserData(){
+//        val currentUser= FirebaseAuth.getInstance().currentUser
+//        user = UserItem(currentUser!!.uid, currentUser!!.displayName!!, currentUser!!.email!!)
+//    }
 }

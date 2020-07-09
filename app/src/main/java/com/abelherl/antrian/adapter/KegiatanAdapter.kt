@@ -84,7 +84,7 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
             tv_nomor.visibility = View.GONE
             tv_nomor.invalidate()
             Log.d("TAG", "TIDAK ANTRI: " + tv_nomor.text + listAntrian)
-            Log.d("UID", user.id)
+            Log.d("UID", user.uid)
             for (antri in listAntrian) {
                 noTotal += 1
 

@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import id.voela.actrans.AcTrans
 import kotlinx.android.synthetic.main.activity_detail_kegiatan.*
 import kotlinx.android.synthetic.main.item_kegiatan.*
@@ -57,8 +58,17 @@ class DetailKegiatanActivity : AppCompatActivity() {
 
     private fun buttonIkut(id: String) {
         val date = Date().date.toString() + "/" + Date().month.toString() + "/" + Date().year.toString()
-        val item = AntrianItem("0", FirebaseAuth.getInstance().currentUser!!.uid, id, date, "0")
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        val item = AntrianItem("0", uid, id, date, "0")
         updateAntrian(item, true, true)
+        FirebaseMessaging.getInstance().subscribeToTopic(uid)
+            .addOnCompleteListener { task ->
+                var msg = "berhasil"
+                if (!task.isSuccessful) {
+                    msg = "gagal"
+                }
+                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun setData(id: String) {

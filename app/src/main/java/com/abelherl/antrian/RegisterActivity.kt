@@ -19,7 +19,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         mAuth = FirebaseAuth.getInstance()
-        ref = FirebaseDatabase.getInstance().reference
+        ref = FirebaseDatabase.getInstance().reference.child("User")
 
         btnRegister.setOnClickListener {
             createEmailPassword()
