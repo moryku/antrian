@@ -103,9 +103,9 @@ class KegiatanAdapter(private val context: Context, private val items : ArrayLis
                         Log.d("TAG", "MASUK ANTRI: " + tv_nomor.text)
                         ikut = true
 
-                        if ( noTotal - noSekarang == 1 ){
-                            notificationHelper(context,"Yeay, giliran kamu berikutnya di "+ item.title,"Tetap sabar menunggu ya!!!")
-                        }
+//                        if ( noTotal - noSekarang == 1 ){
+//                            notificationHelper(context,"Yeay, giliran kamu berikutnya di "+ item.title,"Tetap sabar menunggu ya!!!")
+//                        }
 
 //                        if (noTotal - noSekarang == 5){
 //                            notificationHelper(context,"Hai, giliran kamu tinggal lima orang lagi nih","Segera bersiap-siap ya!!!")
