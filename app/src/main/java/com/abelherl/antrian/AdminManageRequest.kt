@@ -5,12 +5,12 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abelherl.antrian.dataclass.Activity
 import com.abelherl.antrian.dataclass.Queue
+import com.abelherl.antrian.util.sendNotificationByTopic
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -24,6 +24,7 @@ class AdminManageRequest : AppCompatActivity() {
     private lateinit var adapter: FirebaseRecyclerAdapter<Queue, ListHolder>
     private lateinit var query: Query
     private lateinit var getId: String
+    var queueTitle: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class AdminManageRequest : AppCompatActivity() {
         super.onStart()
         query = queRef.orderByChild("status").equalTo("0")
         setList()
+        setTitle(getId)
     }
 
     private fun setList() {
@@ -73,11 +75,11 @@ class AdminManageRequest : AppCompatActivity() {
                     comAlert.setTitle("Confirm Request")
                     comAlert.setMessage("Are you sure ?")
                     comAlert.setPositiveButton("Confirm") { dialog, which ->
-                        completeQue(reqID)
+                        completeQue(reqID, model.uid)
                     }.setNegativeButton("Cancel"){dialog, which ->
 
                     }.setNeutralButton("Dismiss"){dialog, which ->
-                        dismissQue(reqID)
+                        dismissQue(reqID, model.uid)
                     }
                     comAlert.show()
                 }
@@ -87,7 +89,7 @@ class AdminManageRequest : AppCompatActivity() {
         rv_mng_req.adapter = adapter
     }
 
-    private fun dismissQue(reqID: String) {
+    private fun dismissQue(reqID: String, uid: String) {
         FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("3")
             .addOnSuccessListener {
                 toast("Dismissed")
@@ -95,9 +97,10 @@ class AdminManageRequest : AppCompatActivity() {
                 toast("Dismiss failed")
                 createLog("Dismiss failed", it.message.toString())
             }
+        sendNotificationByTopic(this, uid, "Coba lain kali ya!!!", "Maaf, antrian anda di "+queueTitle+" ditolak")
     }
 
-    private fun completeQue(reqID: String) {
+    private fun completeQue(reqID: String, uid: String) {
         FirebaseDatabase.getInstance().getReference("Queue").child(getId).child(reqID).child("status").setValue("1")
             .addOnSuccessListener {
                 toast("Confirmed")
@@ -105,6 +108,7 @@ class AdminManageRequest : AppCompatActivity() {
                 toast("Confirmation failed")
                 createLog("update", it.message.toString())
             }
+        sendNotificationByTopic(this, uid, "Tunggu dengan sabar ya!!!", "Horeee!!! Kamu udah dapat antrian di "+queueTitle)
     }
 
     private fun createLog(s: String, message: String?) {
@@ -141,6 +145,23 @@ class AdminManageRequest : AppCompatActivity() {
 
                 })
         }
+    }
+
+    fun setTitle(actId: String){
+        FirebaseDatabase.getInstance().getReference("Activity").child(actId)
+            .addListenerForSingleValueEvent(object: ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("getTime", error.message)
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val getQueue = snapshot.getValue(Activity::class.java)
+                    val title = getQueue?.title.toString()
+
+                    queueTitle = title
+                }
+
+            })
     }
 
 }
